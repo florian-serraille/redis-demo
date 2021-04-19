@@ -1,0 +1,22 @@
+version: "3.2"
+services:
+
+  redis-server:
+    image: redis
+    command: redis-server --requirepass pass
+    ports:
+      - "16379:6379"
+    container_name: redis-server
+    networks:
+      - redis-network
+
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - "8001:8001"
+    container_name: redis-insight
+    networks:
+      - redis-network
+
+networks:
+  redis-network:
